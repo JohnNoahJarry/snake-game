@@ -1,11 +1,12 @@
 let s;
 let scl = 20;
 let food;
+let timer = 0;
+let difficulty = 200;
 
 function setup() {
     createCanvas(600,600);
     s = new Snake();
-    frameRate(10);
     pickLocation();
 }
 
@@ -16,19 +17,20 @@ function pickLocation() {
     food.mult(scl);
 }
 
-function mousePressed() {
-    s.total++;
-}
-
 function draw() {
     background(51);
     if (s.eat(food)) {
         pickLocation();
+        s.acc -= 1;
     }
     s.death();
-    s.update();
     s.show();
+    if (millis() >= s.acc+timer) {
+        s.update();
+        timer = millis();
+    }
     fill(255,0,100);
+    stroke(255, 0, 100);
     rect(food.x, food.y, scl, scl);
 }
 

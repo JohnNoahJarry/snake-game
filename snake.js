@@ -5,6 +5,7 @@ function Snake() {
     this.yspeed = 0;
     this.total = 0;
     this.tail = [];
+    this.acc = 100;
 
     this.eat = function(pos) {
         let d = dist(this.x, this.y, pos.x, pos.y);
@@ -29,6 +30,7 @@ function Snake() {
                 console.log('starting over');
                 this.total = 0;
                 this.tail = [];
+                this.acc = 100;
             }
         }
     };
@@ -50,6 +52,7 @@ function Snake() {
 
     this.show = function() {
         fill(255);
+        stroke(255);
         for(let i = 0; i < this.tail.length; i++) {
             rect(this.tail[i].x, this.tail[i].y, scl, scl);
         }
